@@ -6,11 +6,11 @@ import com.campus.dto.Products;
 
 public interface ProductsDAO {
 	
-	boolean addProduct(Products p);
+	void addProduct(Products p);
 
-    boolean updateProduct(Products p);
+    void updateProduct(Products p);
 
-    boolean deleteProduct(int productId);
+    void deleteProduct(int productId);
 
     Products getProductById(int productId);
 

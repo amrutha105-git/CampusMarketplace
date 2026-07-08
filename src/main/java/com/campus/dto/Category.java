@@ -3,6 +3,7 @@ package com.campus.dto;
 public class Category {
 	private Integer category_id;
 	private String cname;
+	
 	public Integer getCategory_id() {
 		return category_id;
 	}
@@ -15,5 +16,10 @@ public class Category {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
+	@Override
+	public String toString() {
+		return "Category [category_id=" + category_id + ", cname=" + cname + "]";
+	}
+	
 
 }
