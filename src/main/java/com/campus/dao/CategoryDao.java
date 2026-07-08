@@ -7,8 +7,8 @@ import com.campus.dto.Category;
 public interface CategoryDao {
 	void addCategory(Category c);
 	void updateCategory(Category c);
-	void deleteCategory(Category c);
-	Category getByCategoryId(Integer id);
+	void deleteCategory(Integer category_id);
+	Category getByCategoryId(Integer category_id);
 	List<Category> getByAllCategory();
 
 }

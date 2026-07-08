@@ -21,7 +21,6 @@ public class ProductsDAOimpl implements ProductsDAO{
 	@Override
 	public void addProduct(Products p) {
 
-		
 		String query="insert into product values(0,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps =con.prepareStatement(query);
