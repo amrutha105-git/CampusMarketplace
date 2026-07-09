@@ -6,8 +6,8 @@ public class User {
 	private String name;
 	private String mail;
 	private String password;
-	private String createdAt;
 	private String role;
+	private String createdAt;
 	
 	public Integer getUser_id() {
 		return user_id;
@@ -33,23 +33,23 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 	
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", name=" + name + ", mail=" + mail + ", password=" + password
-				+ ", createdAt=" + createdAt + ", role=" + role + "]";
+				+ ", role=" + role + ", createdAt=" + createdAt + "]";
 	}
 	
 }

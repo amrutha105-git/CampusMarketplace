@@ -35,7 +35,7 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public void updateReview(Review r) {
-		String query="update review set user_id=?, product_id,rating=?,comment=?";
+		String query="update review set user_id=?, product_id=?,rating=?,comment=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,r.getUser_id());
