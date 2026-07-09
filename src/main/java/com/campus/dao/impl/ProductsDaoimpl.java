@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.campus.dao.ProductsDAO;
+import com.campus.dao.ProductsDao;
 import com.campus.dto.Products;
 import com.campus.utility.Connector;
 
-public class ProductsDAOimpl implements ProductsDAO{
+public class ProductsDaoimpl implements ProductsDao{
 	private Connection con;
 	
-	public ProductsDAOimpl() {
+	public ProductsDaoimpl() {
 		this.con=Connector.requestConnection();
 	}
 

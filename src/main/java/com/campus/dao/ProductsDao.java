@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.campus.dto.Products;
 
-public interface ProductsDAO {
+public interface ProductsDao {
 	
 	void addProduct(Products p);
 
