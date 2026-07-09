@@ -8,8 +8,8 @@ public interface ReviewDao {
 	
 	void addReview(Review r);
 	void updateReview(Review r);
-	void deleteReview(Review r);
-	Review getByReviewId(Integer id);
+	void deleteReview(Integer review_id);
+	Review getByReviewId(Integer review_id);
 	List<Review> getByAllReview();
 
 }
