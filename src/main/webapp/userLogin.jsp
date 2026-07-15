@@ -115,24 +115,6 @@ class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-50
 
 </div>
 
-<!-- Role -->
-
-<div class="relative">
-
-<i class="fa-solid fa-users absolute left-4 top-4 text-gray-500"></i>
-
-<select
-name="role"
-required
-class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
-
-<option value="">Select Role</option>
-<option value="Student">Student</option>
-<option value="Teacher">Teacher</option>
-
-</select>
-
-</div>
 
 <!-- Remember & Forgot -->
 

@@ -56,7 +56,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <div class="flex-grow flex items-center justify-center px-6 py-10">
 
 <div class="glass w-full max-w-md rounded-3xl shadow-2xl p-8">
-
+   
+   <%String msg=(String)request.getAttribute("success"); %>
+   <%if(msg!=null){ %>
+   <%=msg %>
+   <%} %>
 <!-- Logo -->
 
 <div class="text-center">
@@ -94,7 +98,7 @@ Buy • Sell • Exchange within your Campus
 
 <input
 type="text"
-name="full_name"
+name="name"
 placeholder="Full Name"
 required
 class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"/>
@@ -168,7 +172,7 @@ Register
 
 Already have an account?
 
-<a href="login.jsp"
+<a href="userLogin.jsp"
 class="text-yellow-300 font-semibold hover:underline">
 
 Login
