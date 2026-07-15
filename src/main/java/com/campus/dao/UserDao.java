@@ -11,5 +11,6 @@ public interface UserDao {
 	void deleteUser(Integer user_id);
 	User getbyUserId(Integer user_id);
 	List<User> getByAllUser();
+	User getByMailAndPassword(String mail,String password);
 	
 }

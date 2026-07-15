@@ -157,7 +157,7 @@ Login
 
 Don't have an account?
 
-<a href="register.jsp"
+<a href="userRegister.jsp"
 class="text-yellow-300 font-semibold hover:underline">
 
 Register

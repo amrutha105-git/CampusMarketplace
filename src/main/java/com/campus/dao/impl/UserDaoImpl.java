@@ -117,4 +117,30 @@ public class UserDaoImpl implements UserDao {
 		return ulist;
 	}
 
+	@Override
+	public User getByMailAndPassword(String mail, String password) {
+		 User u=null;
+		 String query = "select * from users where email = ? and password = ?";
+		    try {
+		        PreparedStatement ps = con.prepareStatement(query);
+		        ps.setString(1, mail);
+		        ps.setString(2, password);
+		        ResultSet rs = ps.executeQuery();
+		        if (rs.next()) {
+		            u = new User();
+		            u.setUser_id(rs.getInt("user_id"));
+		            u.setName(rs.getString("full_name"));
+		            u.setMail(rs.getString("email"));
+		            u.setPassword(rs.getString("password"));
+		            u.setRole(rs.getString("role"));
+		            u.setCreatedAt(rs.getString("created_at"));
+		        }
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+
+		    return u;
+	}
+
 }
