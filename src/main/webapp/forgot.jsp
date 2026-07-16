@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Campus Marketplace | Login</title>
+<title>Campus Marketplace | Forgot Password</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -43,16 +43,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <body class="min-h-screen flex flex-col">
 
-<%String ob=(String)request.getAttribute("error"); %>
-    <%if(ob!=null){ %>
-    <%=ob %>
-    <%} %>
-    
-<%String msg=(String)request.getAttribute("success"); %>
-    <%if(msg!=null){ %>
-    <%=msg %>
-    <%} %>    
-
 <!-- Background Video -->
 
 <video autoplay muted loop playsinline class="video-bg">
@@ -71,30 +61,40 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="text-center">
 
-<div
-class="w-24 h-24 rounded-full bg-white mx-auto flex items-center justify-center shadow-xl">
+<div class="w-24 h-24 rounded-full bg-white mx-auto flex items-center justify-center shadow-xl">
 
-<i class="fas fa-graduation-cap text-5xl text-blue-700"></i>
+<i class="fas fa-key text-5xl text-blue-700"></i>
 
 </div>
 
 <h1 class="text-4xl font-bold text-white mt-5">
 
-Campus Marketplace
+Forgot Password
 
 </h1>
 
 <p class="text-gray-200 mt-2">
 
-Welcome Back! Login to Continue
+Reset your Campus Marketplace account password
 
 </p>
 
 </div>
 
-<!-- Login Form -->
+<%
+String error = (String)request.getAttribute("error");
+if(error != null){
+%>
 
-<form action="LoginServlet" method="post" class="mt-8 space-y-5">
+<div class="mt-5 bg-red-100 border border-red-500 text-red-700 px-4 py-2 rounded-lg text-center">
+    <%= error %>
+</div>
+
+<%
+}
+%>
+
+<form action="ForgotServlet" method="post" class="mt-8 space-y-5">
 
 <!-- Email -->
 
@@ -104,14 +104,14 @@ Welcome Back! Login to Continue
 
 <input
 type="email"
-name="email"
-placeholder="Email Address"
+name="mail"
+placeholder="Enter Registered Email"
 required
 class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"/>
 
 </div>
 
-<!-- Password -->
+<!-- New Password -->
 
 <div class="relative">
 
@@ -120,44 +120,36 @@ class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-50
 <input
 type="password"
 name="password"
-id="password"
-placeholder="Password"
+placeholder="New Password"
 required
 class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"/>
 
 </div>
 
+<!-- Confirm Password -->
 
-<!-- Remember & Forgot -->
+<div class="relative">
 
-<div class="flex justify-between items-center text-white text-sm">
+<i class="fa-solid fa-lock absolute left-4 top-4 text-gray-500"></i>
 
-<label class="flex items-center gap-2">
-
-<input type="checkbox" onclick="togglePassword()">
-
-Show Password
-
-</label>
-
-<a href="forgot.jsp"
-class="text-yellow-300 hover:underline">
-
-Forgot Password?
-
-</a>
+<input
+type="password"
+name="confirm"
+placeholder="Confirm Password"
+required
+class="w-full pl-11 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"/>
 
 </div>
 
-<!-- Login Button -->
+<!-- Button -->
 
 <button
 type="submit"
 class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-bold hover:scale-105 duration-300">
 
-<i class="fa-solid fa-right-to-bracket"></i>
+<i class="fa-solid fa-key"></i>
 
-Login
+Update Password
 
 </button>
 
@@ -165,12 +157,12 @@ Login
 
 <div class="text-center mt-6 text-white">
 
-Don't have an account?
+Remember your password?
 
-<a href="userRegister.jsp"
+<a href="userLogin.jsp"
 class="text-yellow-300 font-semibold hover:underline">
 
-Register
+Login
 
 </a>
 
@@ -198,9 +190,7 @@ Campus Marketplace
 
 <p class="text-gray-300 mt-3">
 
-A secure marketplace where students and teachers can buy,
-sell and exchange books, electronics, notes and accessories
-inside the college campus.
+Buy, Sell and Exchange books, electronics, stationery, sports items and hostel essentials within your campus.
 
 </p>
 
@@ -216,9 +206,9 @@ Quick Links
 
 <ul class="space-y-2 mt-3">
 
-<li><a href="#" class="hover:text-blue-400">Home</a></li>
-<li><a href="#" class="hover:text-blue-400">Products</a></li>
-<li><a href="#" class="hover:text-blue-400">Categories</a></li>
+<li><a href="home.jsp" class="hover:text-blue-400">Home</a></li>
+<li><a href="userLogin.jsp" class="hover:text-blue-400">Login</a></li>
+<li><a href="userRegister.jsp" class="hover:text-blue-400">Register</a></li>
 <li><a href="#" class="hover:text-blue-400">Contact</a></li>
 
 </ul>
@@ -229,33 +219,19 @@ Quick Links
 
 <h2 class="text-2xl font-bold">
 
-Follow Us
+Contact
 
 </h2>
 
-<div class="flex gap-5 mt-4 text-3xl">
-
-<a href="#" class="hover:text-blue-500">
-<i class="fab fa-facebook"></i>
-</a>
-
-<a href="#" class="hover:text-pink-500">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="#" class="hover:text-blue-300">
-<i class="fab fa-linkedin"></i>
-</a>
-
-<a href="#" class="hover:text-white">
-<i class="fab fa-github"></i>
-</a>
-
-</div>
-
-<p class="mt-5 text-gray-300">
+<p class="mt-4 text-gray-300">
 
 📧 campusmarketplace@gmail.com
+
+</p>
+
+<p class="mt-2 text-gray-300">
+
+📍 Campus Marketplace
 
 </p>
 
@@ -274,22 +250,6 @@ Follow Us
 </div>
 
 </footer>
-
-<script>
-
-function togglePassword(){
-
-var password=document.getElementById("password");
-
-if(password.type==="password"){
-    password.type="text";
-}else{
-    password.type="password";
-}
-
-}
-
-</script>
 
 </body>
 </html>

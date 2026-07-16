@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void updateUser(User u) {
-		String query = "update users set name=?,mail=?,password=?,role=?";
+		String query = "update users set name=?,mail=?,password=?,role=? where id=?";
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -46,6 +46,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(2, u.getMail());
 			ps.setString(3, u.getPassword());
 			ps.setString(4, u.getRole());
+			ps.setInt(5, u.getUser_id());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -125,6 +126,31 @@ public class UserDaoImpl implements UserDao {
 		        PreparedStatement ps = con.prepareStatement(query);
 		        ps.setString(1, mail);
 		        ps.setString(2, password);
+		        ResultSet rs = ps.executeQuery();
+		        if (rs.next()) {
+		            u = new User();
+		            u.setUser_id(rs.getInt("user_id"));
+		            u.setName(rs.getString("full_name"));
+		            u.setMail(rs.getString("email"));
+		            u.setPassword(rs.getString("password"));
+		            u.setRole(rs.getString("role"));
+		            u.setCreatedAt(rs.getString("created_at"));
+		        }
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+
+		    return u;
+	}
+
+	@Override
+	public User findByMail(String mail) {
+		 User u = null;
+		    String query = "select * from users where email = ?";
+		    try {
+		        PreparedStatement ps = con.prepareStatement(query);
+		        ps.setString(1, mail);
 		        ResultSet rs = ps.executeQuery();
 		        if (rs.next()) {
 		            u = new User();

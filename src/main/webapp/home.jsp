@@ -38,11 +38,11 @@ Campus Marketplace
 
 <ul class="flex gap-8 text-lg">
 
-<li><a href="home.jsp" class="hover:text-yellow-300">Home</a></li>
 
-<li><a href="ViewProductsServlet" class="hover:text-yellow-300">Products</a></li>
 
-<li><a href="addProduct.jsp" class="hover:text-yellow-300">Sell Product</a></li>
+<li><a href="allProduct.jsp" class="hover:text-yellow-300">Products</a></li>
+
+<li><a href="Product.jsp" class="hover:text-yellow-300">Sell Product</a></li>
 
 <li><a href="orders.jsp" class="hover:text-yellow-300">Orders</a></li>
 
