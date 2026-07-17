@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void updateUser(User u) {
-		String query = "update users set name=?,mail=?,password=?,role=? where id=?";
+		String query = "update users set full_name=?,email=?,password=?,role=? where user_id=?";
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(query);

@@ -43,15 +43,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <body class="min-h-screen flex flex-col">
 
-<%String ob=(String)request.getAttribute("error"); %>
-    <%if(ob!=null){ %>
-    <%=ob %>
-    <%} %>
-    
-<%String msg=(String)request.getAttribute("success"); %>
-    <%if(msg!=null){ %>
-    <%=msg %>
-    <%} %>    
+   
 
 <!-- Background Video -->
 
@@ -91,6 +83,16 @@ Welcome Back! Login to Continue
 </p>
 
 </div>
+
+<%String ob=(String)request.getAttribute("error"); %>
+    <%if(ob!=null){ %>
+    <%=ob %>
+    <%} %>
+    
+<%String msg=(String)request.getAttribute("success"); %>
+    <%if(msg!=null){ %>
+    <%=msg %>
+    <%} %>   
 
 <!-- Login Form -->
 
