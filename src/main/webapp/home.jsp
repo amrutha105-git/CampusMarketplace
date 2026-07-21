@@ -40,9 +40,9 @@ Campus Marketplace
 
 
 
-<li><a href="allProduct.jsp" class="hover:text-yellow-300">Products</a></li>
+<li><a href="viewProduct" class="hover:text-yellow-300">Products</a></li>
 
-<li><a href="Product.jsp" class="hover:text-yellow-300">Sell Product</a></li>
+<li><a href="addProduct.jsp" class="hover:text-yellow-300">Sell Product</a></li>
 
 <li><a href="orders.jsp" class="hover:text-yellow-300">Orders</a></li>
 
@@ -77,7 +77,7 @@ Buy, Sell and Exchange books, electronics, sports items,
 stationery and hostel essentials within your campus.
 </p>
 
-<a href="ViewProductsServlet"
+<a href="viewProduct"
 class="bg-white text-blue-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">
 
 Browse Products

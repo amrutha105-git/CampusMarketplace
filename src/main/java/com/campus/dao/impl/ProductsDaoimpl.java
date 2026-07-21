@@ -28,7 +28,7 @@ public class ProductsDaoimpl implements ProductsDao{
 			ps.setString(2, p.getName());
 			ps.setString(3, p.getDescription());
 			ps.setDouble(4, p.getPrice());
-			ps.setString(4, p.getImage());
+			ps.setString(5, p.getImage());
 			ps.setInt(6, p.getProductQuantity());
 			ps.executeUpdate();
 		} catch (SQLException e) {
