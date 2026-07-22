@@ -5,8 +5,16 @@ public class Orders {
 	private double total_amount; 
 	private String order_status;  
 	private String ordered_at;
+	private double gst;
 	public int getOrder_id() {
 		return order_id;
+		
+	}
+	public double getGst() {
+		return gst;
+	}
+	public void setGst(double gst) {
+		this.gst = gst;
 	}
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
@@ -32,6 +40,8 @@ public class Orders {
 	@Override
 	public String toString() {
 		return "Orders [order_id=" + order_id + ", total_amount=" + total_amount + ", order_status=" + order_status
-				+ ", ordered_at=" + ordered_at + "]";
+				+ ", ordered_at=" + ordered_at + ", gst=" + gst + "]";
+	}
+
 	} 
-}
+

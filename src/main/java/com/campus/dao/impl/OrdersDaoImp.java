@@ -16,13 +16,14 @@ private Connection con;
 @Override
 public void addOrders(Orders o) {
 
-    String query = "INSERT INTO orders(total_amount, order_status) VALUES(?, ?)";
+    String query = "INSERT INTO orders(total_amount, gst, order_status) VALUES(?, ?, ?)";
 
     try {
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setDouble(1, o.getTotal_amount());
-        ps.setString(2, o.getOrder_status());
+        ps.setDouble(2, o.getGst());
+        ps.setString(3, o.getOrder_status());
 
         int result = ps.executeUpdate();
 
@@ -40,14 +41,15 @@ public void addOrders(Orders o) {
 @Override
 public void updateOrders(Orders o) {
 
-    String query = "UPDATE orders SET total_amount=?, order_status=? WHERE order_id=?";
+    String query = "UPDATE orders SET total_amount=?, gst=?, order_status=? WHERE order_id=?";
 
     try {
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setDouble(1, o.getTotal_amount());
-        ps.setString(2, o.getOrder_status());
-        ps.setInt(3, o.getOrder_id());
+        ps.setDouble(2, o.getGst());
+        ps.setString(3, o.getOrder_status());
+        ps.setInt(4, o.getOrder_id());
 
         int result = ps.executeUpdate();
 
@@ -103,6 +105,7 @@ public Orders getOrdersById(int orderId) {
 
             o.setOrder_id(rs.getInt("order_id"));
             o.setTotal_amount(rs.getDouble("total_amount"));
+            o.setGst(rs.getDouble("gst"));
             o.setOrder_status(rs.getString("order_status"));
             o.setOrdered_at(rs.getString("ordered_at"));
 
@@ -126,7 +129,6 @@ public List<Orders> getAllOrderItems() {
     try {
 
         Statement st = con.createStatement();
-
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
@@ -135,6 +137,7 @@ public List<Orders> getAllOrderItems() {
 
             o.setOrder_id(rs.getInt("order_id"));
             o.setTotal_amount(rs.getDouble("total_amount"));
+            o.setGst(rs.getDouble("gst"));
             o.setOrder_status(rs.getString("order_status"));
             o.setOrdered_at(rs.getString("ordered_at"));
 
