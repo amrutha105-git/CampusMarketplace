@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,39 +16,39 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 
 <body class="bg-gray-100">
-<%User u=(User)session.getAttribute("signin"); %>
-<%if(u==null){
-	response.sendRedirect("userLogin.jsp");
-	return;
-	}%>
 
+<%
+User u=(User)session.getAttribute("signin");
+if(u==null){
+    response.sendRedirect("userLogin.jsp");
+    return;
+}
+%>
 
-<!-- Navbar -->
+<!-- ================= Navbar ================= -->
 
-<nav class="bg-blue-700 text-white shadow-lg">
+<nav class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
 
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
 
 <h1 class="text-3xl font-bold">
 <i class="fas fa-graduation-cap"></i>
 Campus Marketplace
 </h1>
 
-<ul class="flex gap-8 text-lg">
+<ul class="flex gap-8 text-lg font-medium">
 
+<li><a href="viewProduct" class="hover:text-yellow-300 duration-300">Products</a></li>
 
+<li><a href="addProduct.jsp" class="hover:text-yellow-300 duration-300">Sell Product</a></li>
 
-<li><a href="viewProduct" class="hover:text-yellow-300">Products</a></li>
+<li><a href="orders.jsp" class="hover:text-yellow-300 duration-300">Orders</a></li>
 
-<li><a href="addProduct.jsp" class="hover:text-yellow-300">Sell Product</a></li>
+<li><a href="reviews.jsp" class="hover:text-yellow-300 duration-300">Reviews</a></li>
 
-<li><a href="orders.jsp" class="hover:text-yellow-300">Orders</a></li>
+<li><a href="profile.jsp" class="hover:text-yellow-300 duration-300">Profile</a></li>
 
-<li><a href="reviews.jsp" class="hover:text-yellow-300">Reviews</a></li>
-
-<li><a href="profile.jsp" class="hover:text-yellow-300">Profile</a></li>
-
-<li><a href="LogoutServlet" class="hover:text-red-300">Logout</a></li>
+<li><a href="LogoutServlet" class="hover:text-red-300 duration-300">Logout</a></li>
 
 </ul>
 
@@ -58,34 +56,53 @@ Campus Marketplace
 
 </nav>
 
-<!-- Hero Section -->
+<!-- ================= Hero Section ================= -->
 
-<section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+<section class="bg-gradient-to-r from-sky-100 via-blue-100 to-cyan-100 min-h-[90vh] flex items-center">
 
-<div class="max-w-6xl mx-auto px-8">
+<div class="max-w-7xl mx-auto px-8 w-full">
 
-<div class="grid md:grid-cols-2 gap-10 items-center">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+
+<!-- Left Side -->
 
 <div>
 
-<h2 class="text-5xl font-bold mb-6">
-Welcome, <%=u.getName()  %> 👋
+<h2 class="text-6xl font-extrabold leading-tight mb-8 text-gray-800">
+
+Welcome,
+<br>
+
+<span class="text-blue-700">
+<%=u.getName()%>
+</span>
+
+👋
+
 </h2>
 
-<p class="text-xl mb-8">
-Buy, Sell and Exchange books, electronics, sports items,
-stationery and hostel essentials within your campus.
+<p class="text-2xl leading-10 text-gray-700 mb-10 max-w-xl">
+
+Buy, Sell and Exchange Books, Electronics, Sports Items,
+Stationery and Hostel Essentials within your Campus.
+
 </p>
 
+<div class="space-x-5">
+
 <a href="viewProduct"
-class="bg-white text-blue-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-200">
+class="bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 duration-300 shadow-lg">
+
+<i class="fas fa-store"></i>
 
 Browse Products
 
 </a>
 
 <a href="addProduct.jsp"
-class="ml-4 bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-300">
+class="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 duration-300 shadow-lg">
+
+<i class="fas fa-plus-circle"></i>
 
 Sell Product
 
@@ -93,10 +110,15 @@ Sell Product
 
 </div>
 
+</div>
+
+<!-- Right Side -->
+
 <div>
 
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
-class="rounded-2xl shadow-2xl">
+<img
+src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900"
+class="rounded-3xl shadow-2xl w-full h-[520px] object-cover">
 
 </div>
 
@@ -106,72 +128,31 @@ class="rounded-2xl shadow-2xl">
 
 </section>
 
-<!-- Categories -->
+<!-- ================= Features ================= -->
 
-<section class="max-w-7xl mx-auto py-14 px-8">
-
-<h2 class="text-4xl font-bold text-center mb-10">
-
-Categories
-
-</h2>
-
-<div class="grid md:grid-cols-5 gap-6">
-
-<div class="bg-white shadow-lg rounded-xl p-8 text-center hover:scale-105 duration-300">
-📚
-<h3 class="font-bold mt-3">Books</h3>
-</div>
-
-<div class="bg-white shadow-lg rounded-xl p-8 text-center hover:scale-105 duration-300">
-💻
-<h3 class="font-bold mt-3">Electronics</h3>
-</div>
-
-<div class="bg-white shadow-lg rounded-xl p-8 text-center hover:scale-105 duration-300">
-⚽
-<h3 class="font-bold mt-3">Sports</h3>
-</div>
-
-<div class="bg-white shadow-lg rounded-xl p-8 text-center hover:scale-105 duration-300">
-📝
-<h3 class="font-bold mt-3">Stationery</h3>
-</div>
-
-<div class="bg-white shadow-lg rounded-xl p-8 text-center hover:scale-105 duration-300">
-🏠
-<h3 class="font-bold mt-3">Hostel Essentials</h3>
-</div>
-
-</div>
-
-</section>
-
-<!-- Features -->
-
-<section class="bg-white py-16">
+<section class="bg-white py-20">
 
 <div class="max-w-7xl mx-auto px-8">
 
-<h2 class="text-4xl font-bold text-center mb-12">
+<h2 class="text-5xl font-bold text-center text-gray-800 mb-16">
 
 Why Choose Campus Marketplace?
 
 </h2>
 
-<div class="grid md:grid-cols-4 gap-8">
+<div class="grid md:grid-cols-4 gap-10">
 
-<div class="text-center">
+<div class="bg-gray-50 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 duration-300">
 
-<i class="fas fa-user-shield text-5xl text-blue-700"></i>
+<i class="fas fa-user-shield text-6xl text-blue-700"></i>
 
-<h3 class="text-xl font-bold mt-4">
+<h3 class="text-2xl font-bold mt-6 text-gray-800">
 
 Trusted Community
 
 </h3>
 
-<p class="text-gray-600 mt-2">
+<p class="text-gray-600 mt-4">
 
 Only students and teachers can access the marketplace.
 
@@ -179,17 +160,17 @@ Only students and teachers can access the marketplace.
 
 </div>
 
-<div class="text-center">
+<div class="bg-gray-50 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 duration-300">
 
-<i class="fas fa-tags text-5xl text-green-600"></i>
+<i class="fas fa-tags text-6xl text-green-600"></i>
 
-<h3 class="text-xl font-bold mt-4">
+<h3 class="text-2xl font-bold mt-6 text-gray-800">
 
 Affordable Prices
 
 </h3>
 
-<p class="text-gray-600 mt-2">
+<p class="text-gray-600 mt-4">
 
 Buy products at student-friendly prices.
 
@@ -197,17 +178,17 @@ Buy products at student-friendly prices.
 
 </div>
 
-<div class="text-center">
+<div class="bg-gray-50 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 duration-300">
 
-<i class="fas fa-bolt text-5xl text-yellow-500"></i>
+<i class="fas fa-bolt text-6xl text-yellow-500"></i>
 
-<h3 class="text-xl font-bold mt-4">
+<h3 class="text-2xl font-bold mt-6 text-gray-800">
 
 Fast Transactions
 
 </h3>
 
-<p class="text-gray-600 mt-2">
+<p class="text-gray-600 mt-4">
 
 Quick buying and selling inside your campus.
 
@@ -215,17 +196,17 @@ Quick buying and selling inside your campus.
 
 </div>
 
-<div class="text-center">
+<div class="bg-gray-50 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 duration-300">
 
-<i class="fas fa-handshake text-5xl text-purple-600"></i>
+<i class="fas fa-handshake text-6xl text-purple-600"></i>
 
-<h3 class="text-xl font-bold mt-4">
+<h3 class="text-2xl font-bold mt-6 text-gray-800">
 
 Easy Exchange
 
 </h3>
 
-<p class="text-gray-600 mt-2">
+<p class="text-gray-600 mt-4">
 
 Exchange books and accessories with ease.
 
@@ -239,33 +220,33 @@ Exchange books and accessories with ease.
 
 </section>
 
-<!-- Footer -->
+<!-- ================= Footer ================= -->
 
-<footer class="bg-gray-900 text-white py-10 mt-10">
+<footer class="bg-gray-900 text-white py-12">
 
 <div class="max-w-7xl mx-auto text-center">
 
-<h2 class="text-3xl font-bold">
+<h2 class="text-4xl font-bold">
 
 Campus Marketplace
 
 </h2>
 
-<p class="mt-3 text-gray-300">
+<p class="mt-4 text-gray-300 text-lg">
 
 Helping Students & Teachers Buy, Sell and Exchange Products.
 
 </p>
 
-<p class="mt-5">
+<p class="mt-5 text-lg">
 
 📧 campusmarketplace@gmail.com
 
 </p>
 
-<hr class="my-6 border-gray-700">
+<hr class="my-8 border-gray-700">
 
-<p>
+<p class="text-gray-400">
 
 © 2026 Campus Marketplace. All Rights Reserved.
 

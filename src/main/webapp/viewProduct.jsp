@@ -6,6 +6,7 @@
 
 <%
 User u=(User)session.getAttribute("signin");
+
 if(u==null){
     response.sendRedirect("userLogin.jsp");
     return;
@@ -16,8 +17,11 @@ List<Products> products=(List<Products>)request.getAttribute("products");
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta charset="UTF-8">
+
 <title>Campus Marketplace | View Products</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,12 +31,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <style>
 
+html,
 body{
-    background:#f3f4f6;
+    height:100%;
 }
 
 .product-card{
-    transition:0.3s;
+    transition:.3s;
 }
 
 .product-card:hover{
@@ -44,149 +49,218 @@ body{
 
 </head>
 
-<body>
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
 
-<!-- Navbar -->
+<!-- ================= NAVBAR ================= -->
 
-<nav class="bg-blue-700 text-white">
+<nav class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
 
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
 
-<h1 class="text-3xl font-bold">
-<i class="fas fa-store"></i>
-Campus Marketplace
-</h1>
+        <h1 class="text-3xl font-bold">
 
-<div class="space-x-6">
+            <i class="fas fa-store"></i>
 
-<a href="home.jsp" class="hover:text-yellow-300">Home</a>
+            Campus Marketplace
 
-<a href="addProduct.jsp" class="hover:text-yellow-300">Sell Product</a>
+        </h1>
 
-<a href="LogoutServlet" class="hover:text-red-300">Logout</a>
+        <div class="space-x-8 text-lg">
 
-</div>
+            <a href="home.jsp"
+            class="hover:text-yellow-300 transition">
 
-</div>
+                Home
+
+            </a>
+
+            <a href="addProduct.jsp"
+            class="hover:text-yellow-300 transition">
+
+                Sell Product
+
+            </a>
+
+            <a href="LogoutServlet"
+            class="hover:text-red-300 transition">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
 
 </nav>
 
-<!-- Heading -->
+<!-- ================= MAIN SECTION ================= -->
 
-<div class="text-center mt-10">
+<div class="flex flex-1 overflow-hidden">
 
-<h1 class="text-4xl font-bold text-blue-700">
+    <!-- ================= LEFT SIDEBAR ================= -->
 
-Available Products
+    <aside class="w-72 bg-white border-r shadow-lg flex-shrink-0">
 
-</h1>
+        <div class="sticky top-0 p-6">
 
-<p class="text-gray-600 mt-3">
+            <h2 class="text-2xl font-bold text-blue-700 mb-6">
 
-Browse products available in the marketplace.
+                Categories
 
-</p>
+            </h2>
+
+            <div class="space-y-4">
+
+                <a href="#"
+                class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
+
+                    📚 Books
+
+                </a>
+
+                <a href="#"
+                class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
+
+                    💻 Electronics
+
+                </a>
+
+                <a href="#"
+                class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
+
+                    ⚽ Sports
+
+                </a>
+
+                <a href="#"
+                class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
+
+                    📝 Stationery
+
+                </a>
+
+                <a href="#"
+                class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
+
+                    🏠 Hostel Essentials
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= RIGHT SIDE ================= -->
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- Heading -->
+
+       <div class="bg-white shadow-sm py-2">
+
+    <div class="text-center">
+
+        <h1 class="text-2xl font-bold text-blue-700">
+            Available Products
+        </h1>
+
+        <p class="text-gray-600 mt-1 text-sm">
+            Browse products available in the marketplace.
+        </p>
+
+    </div>
 
 </div>
 
-<!-- Products -->
+        <!-- Products -->
 
-<div class="max-w-7xl mx-auto px-8 py-10">
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div class="flex-1 overflow-y-auto p-8">
 
 <%
 if(products!=null && !products.isEmpty()){
+%>
 
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+<%
 for(Products p:products){
 %>
 
-<div class="product-card bg-white rounded-xl overflow-hidden">
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
 
-<img src="images/<%=p.getImage()%>"
-     class="w-full h-56 object-cover">
+    <img src="images/<%=p.getImage()%>"
+         class="w-full h-56 object-cover">
 
-<div class="p-5">
+    <div class="p-5">
 
-<h2 class="text-2xl font-bold text-blue-700">
+        <h2 class="text-2xl font-bold text-blue-700">
+            <%=p.getName()%>
+        </h2>
 
-<%=p.getName()%>
+        <p class="text-gray-600 mt-3 h-16 overflow-hidden">
+            <%=p.getDescription()%>
+        </p>
 
-</h2>
+        <p class="text-green-600 text-2xl font-bold mt-4">
+            ₹ <%=p.getPrice()%>
+        </p>
 
-<p class="text-gray-600 mt-3">
+        <p class="mt-2">
+            Quantity :
+            <b><%=p.getProductQuantity()%></b>
+        </p>
 
-<%=p.getDescription()%>
+        <div class="mt-6 flex justify-between">
 
-</p>
+            <a href="ViewSingleProduct?id=<%=p.getProductId()%>"
+               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+                View
+            </a>
 
-<p class="text-green-600 text-2xl font-bold mt-4">
+            <a href="BuyProduct?id=<%=p.getProductId()%>"
+               class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+                Buy
+            </a>
 
-₹ <%=p.getPrice()%>
+        </div>
 
-</p>
-
-<p class="mt-2">
-
-Quantity :
-<b><%=p.getProductQuantity()%></b>
-
-</p>
-
-<div class="mt-6 flex justify-between">
-
-<a href="ViewSingleProduct?id=<%=p.getProductId()%>"
-class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-
-View
-
-</a>
-
-<a href="BuyProduct?id=<%=p.getProductId()%>"
-class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-
-Buy
-
-</a>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
 <%
 }
+%>
 
+</div>
+
+<%
 }else{
 %>
 
-<div class="col-span-4">
+<div class="flex justify-center items-center h-full">
 
-<div class="bg-white rounded-xl shadow-lg p-10 text-center">
+    <div class="bg-white rounded-xl shadow-lg p-12 text-center">
 
-<i class="fas fa-box-open text-6xl text-gray-400"></i>
+        <i class="fas fa-box-open text-6xl text-gray-400"></i>
 
-<h2 class="text-3xl font-bold mt-4">
+        <h2 class="text-3xl font-bold mt-5">
+            No Products Available
+        </h2>
 
-No Products Available
+        <p class="text-gray-500 mt-3">
+            There are no products available in the marketplace.
+        </p>
 
-</h2>
+        <a href="addProduct.jsp"
+           class="inline-block mt-6 bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg">
+            Add Product
+        </a>
 
-<p class="text-gray-500 mt-3">
-
-There are no products in the marketplace.
-
-</p>
-
-<a href="addProduct.jsp"
-class="inline-block mt-6 bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800">
-
-Add Product
-
-</a>
-
-</div>
+    </div>
 
 </div>
 
@@ -196,37 +270,40 @@ Add Product
 
 </div>
 
+        <!-- ================= FOOTER ================= -->
+
+       <!--   <footer class="bg-gray-900 text-white py-8 mt-auto">
+
+            <div class="text-center">
+
+                <h2 class="text-2xl font-bold">
+
+                    Campus Marketplace
+
+                </h2>
+
+                <p class="mt-2">
+
+                    Buy • Sell • Exchange within your Campus
+
+                </p>
+
+                <hr class="my-5 border-gray-700 w-3/4 mx-auto">
+
+                <p>
+
+                    © 2026 Campus Marketplace | All Rights Reserved
+
+                </p>
+
+            </div>
+
+        </footer>
+        -->
+
+    </main>
+
 </div>
-
-<!-- Footer -->
-
-<footer class="bg-gray-900 text-white py-8 mt-10">
-
-<div class="text-center">
-
-<h2 class="text-2xl font-bold">
-
-Campus Marketplace
-
-</h2>
-
-<p class="mt-2">
-
-Buy • Sell • Exchange within your Campus
-
-</p>
-
-<hr class="my-5 border-gray-700 w-3/4 mx-auto">
-
-<p>
-
-© 2026 Campus Marketplace | All Rights Reserved
-
-</p>
-
-</div>
-
-</footer>
 
 </body>
 </html>
