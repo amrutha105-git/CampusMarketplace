@@ -140,7 +140,33 @@ public class ProductsDaoimpl implements ProductsDao{
 		return list;
 	}
 
-	
-	
-
+	/*@Override
+	public List<Products> getProductsByCategory(int categoryId){
+		
+		String query = "Select * from Products where category_id=?";
+		List<Products> clist = new ArrayList<Products>();
+		Products p = null;
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, categoryId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				p = new Products();
+				p.setProductId(rs.getInt("productId"));
+				p.setCategoryId(rs.getInt("categoryId"));
+				p.setName(rs.getString("name"));
+				p.setDescription(rs.getString("description"));
+				p.setPrice(rs.getDouble("price"));
+				p.setImage(rs.getString("image"));
+				p.setProductQuantity(rs.getInt("productQuantity"));
+				clist.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return clist;
+		
+	}*/
 }
