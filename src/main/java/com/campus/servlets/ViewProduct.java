@@ -19,6 +19,12 @@ public class ViewProduct extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProductsDao pdao=new ProductsDaoimpl();
 	    List<Products> list=pdao.getAllProducts();
+	    String category = req.getParameter("categoryId");
+
+	    if(category!=null&& !category.isEmpty()){
+	        int categoryId=Integer.parseInt(category);
+	        list.removeIf(p->p.getCategoryId()!=categoryId);
+	    }
 	    
 	    req.setAttribute("products", list);
         req.getRequestDispatcher("viewProduct.jsp").forward(req, resp);

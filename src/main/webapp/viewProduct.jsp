@@ -112,35 +112,35 @@ body{
 
             <div class="space-y-4">
 
-                <a href="#"
+                <a href="viewProduct?categoryId=1"
                 class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
 
                     📚 Books
 
                 </a>
 
-                <a href="#"
+                <a href="viewProduct?categoryId=2"
                 class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
 
                     💻 Electronics
 
                 </a>
 
-                <a href="#"
+                <a href="viewProduct?categoryId=3"
                 class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
 
                     ⚽ Sports
 
                 </a>
 
-                <a href="#"
+                <a href="viewProduct?categoryId=4"
                 class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
 
                     📝 Stationery
 
                 </a>
 
-                <a href="#"
+                <a href="viewProduct?categoryId=5"
                 class="block bg-blue-50 hover:bg-blue-100 rounded-lg p-4 font-semibold transition">
 
                     🏠 Hostel Essentials
