@@ -4,7 +4,8 @@ import java.util.List;
 import com.campus.dto.Orders;
 
 public interface OrdersDao {
-	void addOrders(Orders o);
+	
+	int addOrders(Orders o);
 
     void updateOrders(Orders o);
 
@@ -12,5 +13,5 @@ public interface OrdersDao {
 
     Orders getOrdersById(int orderId);
 
-    List<Orders> getAllOrderItems();
+    List<Orders> getAllOrders();
 }

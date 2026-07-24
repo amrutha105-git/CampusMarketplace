@@ -38,7 +38,7 @@ Campus Marketplace
 
 <ul class="flex gap-8 text-lg font-medium">
 
-<li><a href="viewProduct" class="hover:text-yellow-300 duration-300">Products</a></li>
+<li><a href="viewProduct" class="hover:text-yellow-300 duration-300">Browse Products</a></li>
 
 <li><a href="addProduct.jsp" class="hover:text-yellow-300 duration-300">Sell Product</a></li>
 

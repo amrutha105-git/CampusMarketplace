@@ -16,26 +16,29 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/viewProduct")
-public class ViewProduct extends HttpServlet {
+@WebServlet("/ProductDetails")
+public class ProductDetails extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req,
+            HttpServletResponse resp)
             throws ServletException, IOException {
 
-        ProductsDao pdao=new ProductsDaoimpl();
-        List<Products> list=pdao.getAllProducts();
-        String category=req.getParameter("categoryId");
+        int productId = Integer.parseInt(req.getParameter("productId"));
 
-        if (category!=null && !category.isEmpty()) {
-            int categoryId = Integer.parseInt(category);
-            list.removeIf(p -> p.getCategoryId() != categoryId);
-        }
+        ProductsDao pdao= new ProductsDaoimpl();
         ReviewDao rdao = new ReviewDaoImpl();
-        List<Review> reviews = rdao.getByAllReview();
-        req.setAttribute("products", list);
+
+        // Get selected product
+        Products p = pdao.getProductById(productId);
+
+        // Get reviews of that product
+        List<Review> reviews = rdao.getReviewsByProductId(productId);
+
+        req.setAttribute("product", p);
         req.setAttribute("reviews", reviews);
 
-        req.getRequestDispatcher("viewProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("productDetails.jsp")
+               .forward(req, resp);
     }
 }

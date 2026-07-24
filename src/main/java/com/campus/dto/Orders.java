@@ -6,6 +6,14 @@ public class Orders {
 	private String order_status;  
 	private String ordered_at;
 	private double gst;
+	private int user_id;
+
+	public int getUser_id() {
+	    return user_id;
+	}
+	public void setUser_id(int user_id) {
+	    this.user_id = user_id;
+	}
 	public int getOrder_id() {
 		return order_id;
 		

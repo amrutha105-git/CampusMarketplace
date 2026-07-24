@@ -11,5 +11,6 @@ public interface ReviewDao {
 	void deleteReview(Integer review_id);
 	Review getByReviewId(Integer review_id);
 	List<Review> getByAllReview();
+	List<Review> getReviewsByProductId(Integer productId);
 
 }

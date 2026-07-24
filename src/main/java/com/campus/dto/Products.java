@@ -7,7 +7,7 @@ public class Products {
 	private String description;
 	private double price;
 	private String image;
-	private int productQuantity;
+	
 	public int getProductId() {
 		return productId;
 	}
@@ -44,16 +44,11 @@ public class Products {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public int getProductQuantity() {
-		return productQuantity;
-	}
-	public void setProductQuantity(int productQuantity) {
-		this.productQuantity = productQuantity;
-	}
+	
 	@Override
 	public String toString() {
 		return "Products [productId=" + productId + ", categoryId=" + categoryId + ", name=" + name + ", description="
-				+ description + ", price=" + price + ", image=" + image + ", productQuantity=" + productQuantity + "]";
+				+ description + ", price=" + price + ", image=" + image +  "]";
 	}
 	
 	

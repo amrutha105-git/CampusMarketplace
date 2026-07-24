@@ -172,17 +172,6 @@ required>
 
 </div>
 
-<div>
-
-<label class="font-semibold">Quantity</label>
-
-<input
-type="number"
-name="product_quantity"
-placeholder="Available Quantity"
-required>
-
-</div>
 
 <div class="md:col-span-2">
 

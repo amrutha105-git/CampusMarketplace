@@ -21,7 +21,7 @@ public class ProductsDaoimpl implements ProductsDao{
 	@Override
 	public void addProduct(Products p) {
 
-		String query="insert into product values(0,?,?,?,?,?,?)";
+		String query="insert into product values(0,?,?,?,?,?)";
 		try {
 			PreparedStatement ps =con.prepareStatement(query);
 			ps.setInt(1, p.getCategoryId());
@@ -29,7 +29,7 @@ public class ProductsDaoimpl implements ProductsDao{
 			ps.setString(3, p.getDescription());
 			ps.setDouble(4, p.getPrice());
 			ps.setString(5, p.getImage());
-			ps.setInt(6, p.getProductQuantity());
+			
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			
@@ -44,16 +44,15 @@ public class ProductsDaoimpl implements ProductsDao{
 	public void updateProduct(Products p) {
 
 		
-		String query="update product set category_id=?, name=?, description=?, price=?, image=?, product_quantity=? where product_id=?";
+		String query="update product set category_id=?, name=?, description=?, price=?, image=? where product_id=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1, p.getCategoryId());
 			ps.setString(2, p.getName());
 			ps.setString(3, p.getDescription());
 			ps.setDouble(4, p.getPrice());
-			ps.setString(4, p.getImage());
-			ps.setInt(6, p.getProductQuantity());
-			ps.setInt(7, p.getProductId());
+			ps.setString(5, p.getImage());
+			ps.setInt(6, p.getProductId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			
@@ -67,7 +66,7 @@ public class ProductsDaoimpl implements ProductsDao{
 	@Override
 	public void deleteProduct(int productId) {
 		
-		String query="delete from product where id=?";
+		String query="delete from product where product_id=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1, productId);
@@ -83,7 +82,7 @@ public class ProductsDaoimpl implements ProductsDao{
 	@Override
 	public Products getProductById(int productId) {
 
-		String query="select * from product where id=?";
+		String query="select * from product where product_id=?";
 		Products p=null;
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
@@ -97,7 +96,7 @@ public class ProductsDaoimpl implements ProductsDao{
 				p.setDescription(rs.getString("description"));
 				p.setPrice(rs.getDouble("price"));
 				p.setImage(rs.getString("image"));
-				p.setProductQuantity(rs.getInt("product_quantity"));
+		
 				
 			}
 		} catch (SQLException e) {
@@ -126,7 +125,7 @@ public class ProductsDaoimpl implements ProductsDao{
 				p.setDescription(rs.getString("description"));
 				p.setPrice(rs.getDouble("price"));
 				p.setImage(rs.getString("image"));
-				p.setProductQuantity(rs.getInt("product_quantity"));
+		
 				list.add(p);
 			}
 		} catch (SQLException e) {

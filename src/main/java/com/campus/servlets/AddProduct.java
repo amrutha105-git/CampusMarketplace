@@ -30,7 +30,7 @@ public class AddProduct extends HttpServlet {
         p.setName(req.getParameter("pname"));
         p.setDescription(req.getParameter("description"));
         p.setPrice(Double.parseDouble(req.getParameter("price")));
-        p.setProductQuantity(Integer.parseInt(req.getParameter("product_quantity")));
+      
 
         // Upload image
         Part part = req.getPart("image");
@@ -50,7 +50,7 @@ public class AddProduct extends HttpServlet {
         // Save filename in database
         p.setImage(fileName);
 
-        // Insert product
+        
         pdao.addProduct(p);
 
         req.setAttribute("success", "Product Added Successfully");

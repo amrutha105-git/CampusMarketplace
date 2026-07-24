@@ -11,17 +11,17 @@ import com.campus.dao.OrderitemsDao;
 import com.campus.dto.Orderitems;
 import com.campus.utility.Connector;
 
-public class OrderitemsDaoimpl implements OrderitemsDao {
+public class OrderitemsDaoImpl implements OrderitemsDao {
 	private Connection con;
 	
-	public OrderitemsDaoimpl() {
+	public OrderitemsDaoImpl() {
 		this.con=Connector.requestConnection();
 	}
 
 	@Override
 	public void addOrderItem(Orderitems o) {
 
-		String query="insert into order_item values(?,?,?,?)";
+		String query="insert into order_item(order_id,product_id,order_quantity,unit_price) VALUES(?,?,?,?)";;
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,o.getOrderId() );
@@ -41,7 +41,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 	@Override
 	public void updateOrderItem(Orderitems o) {
 
-		String query="update order_item set order_id=?,set product_id=?,set order_quantity=?,set unit_price=? where order_item_id=? ";
+		String query="update order_item set order_id=?, product_id=?, order_quantity=?, unit_price=? where order_item_id=?";
 		 try {
 	          PreparedStatement ps = con.prepareStatement(query);
 	            ps.setInt(1, o.getOrderId());
