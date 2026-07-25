@@ -13,5 +13,10 @@ public interface OrdersDao {
 
     Orders getOrdersById(int orderId);
 
+<<<<<<< Updated upstream
     List<Orders> getAllOrders();
 }
+=======
+    List<Orders> getAllOrderItems();
+}
+>>>>>>> Stashed changes
