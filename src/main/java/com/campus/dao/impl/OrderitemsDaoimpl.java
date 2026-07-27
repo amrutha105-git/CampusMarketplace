@@ -11,10 +11,10 @@ import com.campus.dao.OrderitemsDao;
 import com.campus.dto.Orderitems;
 import com.campus.utility.Connector;
 
-public class OrderitemsDaoImpl implements OrderitemsDao {
+public class OrderitemsDaoimpl implements OrderitemsDao {
 	private Connection con;
 	
-	public OrderitemsDaoImpl() {
+	public OrderitemsDaoimpl() {
 		this.con=Connector.requestConnection();
 	}
 

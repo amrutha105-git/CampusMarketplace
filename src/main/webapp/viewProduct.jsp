@@ -21,6 +21,7 @@ List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 
 
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,6 +106,26 @@ List<Review> reviews = (List<Review>) request.getAttribute("reviews");
     </div>
 
 </nav>
+<%
+String successMessage = (String) request.getAttribute("successMessage");
+if(successMessage != null){
+%>
+
+<div style="background:#d4edda;
+            color:#155724;
+            padding:15px;
+            margin:20px;
+            border:1px solid #c3e6cb;
+            border-radius:8px;
+            font-size:18px;
+            text-align:center;
+            font-weight:bold;">
+    ✅ <%=successMessage %>
+</div>
+
+<%
+}
+%>
 
 <!-- ================= MAIN ================= -->
 

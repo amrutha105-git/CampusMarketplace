@@ -7,7 +7,15 @@ public class Products {
 	private String description;
 	private double price;
 	private String image;
-	
+	private int sellerId;
+
+	public int getSellerId() {
+	    return sellerId;
+	}
+
+	public void setSellerId(int sellerId) {
+	    this.sellerId = sellerId;
+	}
 	public int getProductId() {
 		return productId;
 	}

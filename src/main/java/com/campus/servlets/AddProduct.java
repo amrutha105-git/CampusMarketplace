@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.campus.dao.ProductsDao;
 import com.campus.dao.impl.ProductsDaoimpl;
 import com.campus.dto.Products;
+import com.campus.dto.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -13,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 @WebServlet("/ProductServlet")
@@ -25,11 +27,14 @@ public class AddProduct extends HttpServlet {
 
         ProductsDao pdao = new ProductsDaoimpl();
         Products p = new Products();
+        HttpSession session = req.getSession();
 
         p.setCategoryId(Integer.parseInt(req.getParameter("category_id")));
         p.setName(req.getParameter("pname"));
         p.setDescription(req.getParameter("description"));
         p.setPrice(Double.parseDouble(req.getParameter("price")));
+        User u = (User) session.getAttribute("signin");
+        p.setSellerId(u.getUser_id());
       
 
         // Upload image

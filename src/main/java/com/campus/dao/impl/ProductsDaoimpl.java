@@ -21,7 +21,7 @@ public class ProductsDaoimpl implements ProductsDao{
 	@Override
 	public void addProduct(Products p) {
 
-		String query="insert into product values(0,?,?,?,?,?)";
+		String query="insert into product values(0,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps =con.prepareStatement(query);
 			ps.setInt(1, p.getCategoryId());
@@ -29,6 +29,7 @@ public class ProductsDaoimpl implements ProductsDao{
 			ps.setString(3, p.getDescription());
 			ps.setDouble(4, p.getPrice());
 			ps.setString(5, p.getImage());
+			ps.setInt(6, p.getSellerId());
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {

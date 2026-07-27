@@ -6,7 +6,7 @@ import com.campus.dao.OrdersDao;
 import com.campus.dao.OrderitemsDao;
 
 import com.campus.dao.impl.OrdersDaoImpl;
-import com.campus.dao.impl.OrderitemsDaoImpl;
+import com.campus.dao.impl.OrderitemsDaoimpl;
 
 import com.campus.dto.Orders;
 import com.campus.dto.Orderitems;
@@ -57,11 +57,11 @@ public class PlaceOrderServlet extends HttpServlet {
         item.setOrderQuantity(Integer.parseInt(req.getParameter("quantity")));
         item.setUnitPrice(Double.parseDouble(req.getParameter("price")));
 
-        OrderitemsDao itemDao = new OrderitemsDaoImpl();
+        OrderitemsDao itemDao = new OrderitemsDaoimpl();
         // Insert into order_item table
         itemDao.addOrderItem(item);
-        
-        resp.sendRedirect("orderSuccess.jsp");
+        session.setAttribute("success", "Order placed successfully!");
+        resp.sendRedirect("viewProduct");
 
 
     }

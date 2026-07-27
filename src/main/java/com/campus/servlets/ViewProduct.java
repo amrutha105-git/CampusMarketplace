@@ -35,6 +35,13 @@ public class ViewProduct extends HttpServlet {
         List<Review> reviews = rdao.getByAllReview();
         req.setAttribute("products", list);
         req.setAttribute("reviews", reviews);
+        
+        String successMessage = (String) req.getSession().getAttribute("success");
+
+        if(successMessage != null){
+            req.setAttribute("successMessage", successMessage);
+            req.getSession().removeAttribute("success");
+        }
 
         req.getRequestDispatcher("viewProduct.jsp").forward(req, resp);
     }
