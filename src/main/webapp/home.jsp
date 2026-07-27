@@ -48,7 +48,10 @@ Campus Marketplace
 
 <li><a href="profile.jsp" class="hover:text-yellow-300 duration-300">Profile</a></li>
 
-<li><a href="LogoutServlet" class="hover:text-red-300 duration-300">Logout</a></li>
+<li><a href="LogoutServlet"class="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-xl text-white font-semibold transition">
+                Logout
+
+</a></li>
 
 </ul>
 
