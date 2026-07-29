@@ -22,7 +22,7 @@ if(p == null){
 
 double price = p.getPrice();
 
-double gst = price * 0.18;
+double gst = price * 0.10;
 
 double total = price + gst;
 

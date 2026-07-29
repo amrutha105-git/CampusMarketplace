@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.campus.dao.OrdersDao;
 import com.campus.dto.Orders;
+import com.campus.dto.SellersOrders;
 import com.campus.utility.Connector;
 
 public class OrdersDaoImpl implements OrdersDao {
@@ -153,6 +154,84 @@ public List<Orders> getAllOrders() {
     }
 
     return list;
+}
+
+@Override
+public List<SellersOrders> getSellerOrders(int sellerId) {
+
+    List<SellersOrders> list = new ArrayList<>();
+
+    String query =
+            "SELECT " +
+            "o.order_id AS order_id, " +
+            "p.product_id AS product_id, " +
+            "p.name AS product_name, " +
+            "oi.order_quantity AS order_quantity, " +
+            "oi.unit_price AS unit_price, " +
+            "u.full_name AS buyer_name, " +
+            "o.order_status AS order_status, " +
+            "o.ordered_at AS ordered_at " +
+            "FROM orders o " +
+            "INNER JOIN order_item oi ON o.order_id = oi.order_id " +
+            "INNER JOIN product p ON oi.product_id = p.product_id " +
+            "INNER JOIN users u ON o.user_id = u.user_id " +
+            "WHERE p.seller_id = ? " +
+            "ORDER BY o.ordered_at DESC";
+
+    try {
+
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, sellerId);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            SellersOrders s = new SellersOrders();
+
+            s.setOrderId(rs.getInt("order_id"));
+            s.setProductId(rs.getInt("product_id"));
+            s.setProductName(rs.getString("product_name"));
+            s.setQuantity(rs.getInt("order_quantity"));
+            s.setUnitPrice(rs.getDouble("unit_price"));
+            s.setBuyerName(rs.getString("buyer_name"));
+            s.setOrderStatus(rs.getString("order_status"));
+            s.setOrderedAt(rs.getString("ordered_at"));
+
+            list.add(s);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+
+
+@Override
+public void updateOrderStatus(int orderId, String status) {
+
+    String query = "UPDATE orders SET order_status=? WHERE order_id=?";
+
+    try {
+
+        PreparedStatement ps = con.prepareStatement(query);
+
+        ps.setString(1, status);
+        ps.setInt(2, orderId);
+
+        int result = ps.executeUpdate();
+
+        if(result > 0) {
+            System.out.println("Order Status Updated Successfully");
+        } else {
+            System.out.println("Order Not Found");
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 }
 
 

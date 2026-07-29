@@ -2,6 +2,7 @@ package com.campus.dao;
 
 import java.util.List;
 import com.campus.dto.Orders;
+import com.campus.dto.SellersOrders;
 
 public interface OrdersDao {
 	
@@ -15,5 +16,9 @@ public interface OrdersDao {
 
 
     List<Orders> getAllOrders();
+    
+    List<SellersOrders> getSellerOrders(int sellerId);
+    
+    void updateOrderStatus(int orderId, String status);
 }
 

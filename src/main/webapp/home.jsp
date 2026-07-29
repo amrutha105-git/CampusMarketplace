@@ -42,6 +42,8 @@ Campus Marketplace
 
 <li><a href="addProduct.jsp" class="hover:text-yellow-300 duration-300">Sell Product</a></li>
 
+<li><a href="SellerOrders" class="hover:text-yellow-300 duration-300">Seller Orders</a></li>
+
 <li><a href="orders.jsp" class="hover:text-yellow-300 duration-300">Orders</a></li>
 
 <li><a href="reviews.jsp" class="hover:text-yellow-300 duration-300">Reviews</a></li>
