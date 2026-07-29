@@ -234,6 +234,60 @@ public void updateOrderStatus(int orderId, String status) {
     }
 }
 
+@Override
+public boolean canReview(int userId, int productId) {
+
+    String query = "SELECT * FROM orders o "
+                 + "JOIN order_item oi ON o.order_id = oi.order_id "
+                 + "WHERE o.user_id=? "
+                 + "AND oi.product_id=? "
+                 + "AND o.order_status='Completed'";
+
+    try {
+
+        PreparedStatement ps = con.prepareStatement(query);
+
+        ps.setInt(1, userId);
+        ps.setInt(2, productId);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return true;
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+
+@Override
+public boolean alreadyReviewed(int userId, int productId) {
+
+    String query = "SELECT * FROM review WHERE user_id=? AND product_id=?";
+
+    try {
+
+        PreparedStatement ps = con.prepareStatement(query);
+
+        ps.setInt(1, userId);
+        ps.setInt(2, productId);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return true;
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+
 
 
 }

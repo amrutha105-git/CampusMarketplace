@@ -17,6 +17,12 @@ if(u==null){
 Products product=(Products)request.getAttribute("product");
 List<Review> reviews=(List<Review>)request.getAttribute("reviews");
 
+boolean canReview = false;
+
+if(request.getAttribute("canReview") != null){
+    canReview = (Boolean)request.getAttribute("canReview");
+}
+
 int reviewCount=0;
 int totalRating=0;
 
@@ -237,12 +243,87 @@ Description
 
 <hr class="my-10">
 
+<%
+if(canReview){
+%>
 
+<div class="mb-8 text-center">
 
+    <button
+        type="button"
+        onclick="document.getElementById('reviewForm').style.display='block'; this.style.display='none';"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold">
 
+        <i class="fas fa-pen"></i>
+        Add Review
+
+    </button>
+
+</div>
+
+<form id="reviewForm"
+      action="AddReview"
+      method="post"
+      class="mb-8 bg-gray-50 p-6 rounded-lg shadow"
+      style="display:none;">
+
+    <input type="hidden"
+           name="productId"
+           value="<%=product.getProductId()%>">
+
+    <h2 class="text-2xl font-bold text-blue-700 mb-5">
+
+        Write a Review
+
+    </h2>
+
+    <label class="block font-semibold mb-2">
+
+        Rating
+
+    </label>
+
+    <select name="rating"
+            class="w-full border rounded-lg p-3 mb-4"
+            required>
+
+        <option value="">Select Rating</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+
+    </select>
+
+    <label class="block font-semibold mb-2">
+
+        Comment
+
+    </label>
+
+    <textarea
+        name="comment"
+        rows="4"
+        class="w-full border rounded-lg p-3 mb-5"
+        placeholder="Write your review..."
+        required></textarea>
+
+    <button
+        type="submit"
+        class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg">
+
+        Submit Review
+
+    </button>
+
+</form>
+
+<%
+}
+%>
 
 <!-- REVIEWS -->
-
 
 <h2 class="text-3xl font-bold text-blue-700">
 

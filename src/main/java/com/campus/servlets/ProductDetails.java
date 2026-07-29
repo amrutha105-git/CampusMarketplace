@@ -3,12 +3,15 @@ package com.campus.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import com.campus.dao.OrdersDao;
 import com.campus.dao.ProductsDao;
 import com.campus.dao.ReviewDao;
+import com.campus.dao.impl.OrdersDaoImpl;
 import com.campus.dao.impl.ProductsDaoimpl;
 import com.campus.dao.impl.ReviewDaoImpl;
 import com.campus.dto.Products;
 import com.campus.dto.Review;
+import com.campus.dto.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,19 +29,29 @@ public class ProductDetails extends HttpServlet {
 
         int productId = Integer.parseInt(req.getParameter("productId"));
 
-        ProductsDao pdao= new ProductsDaoimpl();
+        ProductsDao pdao = new ProductsDaoimpl();
         ReviewDao rdao = new ReviewDaoImpl();
+        OrdersDao odao = new OrdersDaoImpl();
 
-        // Get selected product
+        // Product
         Products p = pdao.getProductById(productId);
 
-        // Get reviews of that product
+        // Reviews
         List<Review> reviews = rdao.getReviewsByProductId(productId);
+
+        // Logged-in user
+        User user = (User) req.getSession().getAttribute("signin");
+
+        boolean canReview = false;
+
+        if (user != null) {
+            canReview = odao.canReview(user.getUser_id(), productId);
+        }
 
         req.setAttribute("product", p);
         req.setAttribute("reviews", reviews);
+        req.setAttribute("canReview", canReview);
 
-        req.getRequestDispatcher("productDetails.jsp")
-               .forward(req, resp);
+        req.getRequestDispatcher("productDetails.jsp").forward(req, resp);
     }
 }

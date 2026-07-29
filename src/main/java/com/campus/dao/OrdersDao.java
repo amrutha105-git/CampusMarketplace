@@ -20,5 +20,9 @@ public interface OrdersDao {
     List<SellersOrders> getSellerOrders(int sellerId);
     
     void updateOrderStatus(int orderId, String status);
+    
+    boolean canReview(int userId, int productId);
+    
+    boolean alreadyReviewed(int userId, int productId);
 }
 
