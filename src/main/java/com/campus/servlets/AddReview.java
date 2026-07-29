@@ -8,38 +8,40 @@ import com.campus.dto.Review;
 import com.campus.dto.User;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class AddReview  extends HttpServlet{
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 HttpSession session = req.getSession();
+@WebServlet("/AddReview")
+public class AddReview extends HttpServlet {
 
-	        User u = (User) session.getAttribute("signin");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-	        if (u == null) {
-	            resp.sendRedirect("userLogin.jsp");
-	            return;
-	        }
+        HttpSession session = req.getSession();
 
-	        Review review = new Review();
-	        
-	        int productId=Integer.parseInt(req.getParameter("productId"));
+        User u = (User) session.getAttribute("signin");
 
-	        review.setUser_id(u.getUser_id());
-	        review.setProduct_id(productId);
-	        review.setRating(Integer.parseInt(req.getParameter("rating")));
-	        review.setComment(req.getParameter("comment"));
+        if (u == null) {
+            resp.sendRedirect("userLogin.jsp");
+            return;
+        }
 
-	        ReviewDao dao = new ReviewDaoImpl();
+        int productId = Integer.parseInt(req.getParameter("productId"));
 
-	        dao.addReview(review);
+        Review review = new Review();
 
-	        resp.sendRedirect("ProductDetails?productId=" + productId);
-	}
+        review.setUser_id(u.getUser_id());
+        review.setProduct_id(productId);
+        review.setRating(Integer.parseInt(req.getParameter("rating")));
+        review.setComment(req.getParameter("comment"));
 
+        ReviewDao dao = new ReviewDaoImpl();
+        dao.addReview(review);
+
+        resp.sendRedirect("ProductDetails?productId=" + productId);
+    }
 }
