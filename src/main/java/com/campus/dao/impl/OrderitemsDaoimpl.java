@@ -26,7 +26,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,o.getOrderId() );
 			ps.setInt(2, o.getProductId());
-			ps.setInt(3, o.getOrderProductQuantity());
+			ps.setInt(3, o.getOrderQuantity());
 			ps.setDouble(4, o.getUnitPrice());
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -46,7 +46,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 	          PreparedStatement ps = con.prepareStatement(query);
 	            ps.setInt(1, o.getOrderId());
 	            ps.setInt(2, o.getProductId());
-	            ps.setInt(3, o.getOrderProductQuantity());
+	            ps.setInt(3, o.getOrderQuantity());
 	            ps.setDouble(4, o.getUnitPrice());
 	            ps.setInt(5, o.getOrderItemId());
 	            ps.executeUpdate();
@@ -86,7 +86,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
                 o.setOrderItemId(rs.getInt("order_item_id"));
                 o.setOrderId(rs.getInt("order_id"));
                 o.setProductId(rs.getInt("product_id"));
-                o.setOrderProductQuantity(orderItemId);
+                o.setOrderQuantity(orderItemId);
                 o.setUnitPrice(rs.getDouble("unit_price"));
                 }
             } catch (SQLException e) {
@@ -110,7 +110,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
                 o.setOrderItemId(rs.getInt("order_item_id"));
                 o.setOrderId(rs.getInt("order_id"));
                 o.setProductId(rs.getInt("product_id"));
-                o.setOrderProductQuantity(0);
+                o.setOrderQuantity(0);
                 o.setUnitPrice(rs.getDouble("unit_price"));
                 list.add(o);
             }
