@@ -187,18 +187,36 @@ Logout
 </nav>
 
 <%
-String successMessage=(String)request.getAttribute("successMessage");
+String success = (String) session.getAttribute("success");
 
-if(successMessage!=null){
+if(success != null){
 %>
 
 <div class="mx-8 mt-5 bg-green-100 border border-green-300 text-green-800 px-6 py-4 rounded-xl font-semibold text-center">
 
-✅ <%=successMessage%>
+    ✅ <%=success%>
 
 </div>
 
 <%
+session.removeAttribute("success");
+}
+%>
+
+<%
+String error = (String) session.getAttribute("error");
+
+if(error != null){
+%>
+
+<div class="mx-8 mt-5 bg-red-100 border border-red-300 text-red-800 px-6 py-4 rounded-xl font-semibold text-center">
+
+    ❌ <%=error%>
+
+</div>
+
+<%
+session.removeAttribute("error");
 }
 %>
 

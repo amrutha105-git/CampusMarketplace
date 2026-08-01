@@ -1,6 +1,8 @@
 package com.campus.dao;
 
 import java.util.List;
+
+import com.campus.dto.BuyerOrders;
 import com.campus.dto.Orders;
 import com.campus.dto.SellersOrders;
 
@@ -24,5 +26,7 @@ public interface OrdersDao {
     boolean canReview(int userId, int productId);
     
     boolean alreadyReviewed(int userId, int productId);
+    
+    List<BuyerOrders> getBuyerOrders(int userId);
 }
 

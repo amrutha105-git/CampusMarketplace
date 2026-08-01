@@ -22,7 +22,7 @@ if(p == null){
 
 double price = p.getPrice();
 
-double gst = price * 0.10;
+double gst = price * 0.18;
 
 double total = price + gst;
 
@@ -113,11 +113,17 @@ class="w-full h-72 object-contain border rounded-lg">
 
 
 <p>
+
 Price :
+
 <span class="font-bold text-green-600">
+
 ₹ <%=price%>
+
 </span>
+
 </p>
+
 
 
 <p class="mt-3">
@@ -125,7 +131,9 @@ Price :
 GST (18%) :
 
 <span class="font-bold">
-₹ <%=gst%>
+
+₹ <span id="gst"><%=gst%></span>
+
 </span>
 
 </p>
@@ -139,7 +147,8 @@ GST (18%) :
 <p class="text-2xl font-bold text-blue-700">
 
 Total Amount :
-₹ <%=total%>
+
+₹ <span id="total"><%=total%></span>
 
 </p>
 
@@ -150,6 +159,7 @@ Total Amount :
 </div>
 
 </div>
+
 
 
 
@@ -172,16 +182,6 @@ value="<%=price%>">
 
 
 
-<input type="hidden"
-name="gst"
-value="<%=gst%>">
-
-
-
-<input type="hidden"
-name="total"
-value="<%=total%>">
-
 
 
 <label class="text-xl font-semibold">
@@ -191,11 +191,16 @@ Quantity
 </label>
 
 
+
 <input type="number"
+id="quantity"
 name="quantity"
 value="1"
 min="1"
+onfocus="if(this.value=='1') this.value='';"
 class="border rounded-lg px-4 py-2 ml-5 w-24">
+
+
 
 
 
@@ -220,6 +225,53 @@ Confirm Order
 
 
 </div>
+
+
+
+<script>
+
+const price = <%=price%>;
+
+
+document.getElementById("quantity")
+.addEventListener("input", function(){
+
+
+    let quantity = parseInt(this.value);
+
+
+    if(quantity < 1 || isNaN(quantity)){
+
+        quantity = 1;
+        this.value = 1;
+
+    }
+
+
+    let subtotal = price * quantity;
+
+
+    let gst = subtotal * 0.18;
+
+
+    let total = subtotal + gst;
+
+
+
+    document.getElementById("gst").innerText =
+        gst.toFixed(2);
+
+
+
+    document.getElementById("total").innerText =
+        total.toFixed(2);
+
+
+});
+
+
+</script>
+
 
 
 </body>

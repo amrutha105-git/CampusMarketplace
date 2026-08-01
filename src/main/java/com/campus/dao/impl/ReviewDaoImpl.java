@@ -20,13 +20,15 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public void addReview(Review r) {
-		String query="insert into reviews values(0,?,?,?,?)";
+		String query= "INSERT INTO reviews VALUES(0,?,?,?,?,SYSDATE())";
 		try {
-			PreparedStatement ps=con.prepareStatement(query);
-			ps.setInt(1,r.getUser_id());
-			ps.setInt(2,r.getProduct_id());
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, r.getUser_id());
+			ps.setInt(2, r.getProduct_id());
 			ps.setInt(3, r.getRating());
 			ps.setString(4, r.getComment());
+
 			ps.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();

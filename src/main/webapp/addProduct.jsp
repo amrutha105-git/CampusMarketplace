@@ -67,9 +67,12 @@ Campus Marketplace
 
 <a href="home.jsp" class="hover:text-yellow-300">Home</a>
 
-<a href="viewProduct" class="hover:text-yellow-300">Products</a>
+<a href="viewProduct" class="hover:text-yellow-300">Browse Products</a>
 
-<a href="LogoutServlet" class="hover:text-red-300">Logout</a>
+<a href="LogoutServlet"class="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-xl text-white font-semibold transition">
+                Logout
+
+</a>
 
 </div>
 

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.campus.dao.OrdersDao;
+import com.campus.dto.BuyerOrders;
 import com.campus.dto.Orders;
 import com.campus.dto.SellersOrders;
 import com.campus.utility.Connector;
@@ -288,6 +289,52 @@ public boolean alreadyReviewed(int userId, int productId) {
     return false;
 }
 
+@Override
+public List<BuyerOrders> getBuyerOrders(int userId) {
+
+    List<BuyerOrders> list = new ArrayList<>();
+
+    String query = "SELECT o.order_id, "
+                 + "p.product_id, "
+                 + "p.name AS product_name, "
+                 + "oi.order_quantity, "
+                 + "oi.unit_price, "
+                 + "o.order_status, "
+                 + "o.ordered_at "
+                 + "FROM orders o "
+                 + "JOIN order_item oi ON o.order_id = oi.order_id "
+                 + "JOIN product p ON oi.product_id = p.product_id "
+                 + "WHERE o.user_id = ? "
+                 + "ORDER BY o.ordered_at DESC";
+
+    try {
+
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, userId);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            BuyerOrders b = new BuyerOrders();
+
+            b.setOrderId(rs.getInt("order_id"));
+            b.setProductId(rs.getInt("product_id"));
+            b.setProductName(rs.getString("product_name"));
+            b.setQuantity(rs.getInt("order_quantity"));
+            b.setUnitPrice(rs.getDouble("unit_price"));
+            b.setOrderStatus(rs.getString("order_status"));
+            b.setOrderedAt(rs.getString("ordered_at"));
+
+            list.add(b);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
 
 
 }
