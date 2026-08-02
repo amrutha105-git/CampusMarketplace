@@ -67,7 +67,7 @@ public class PlaceOrderServlet extends HttpServlet {
         Orderitems item = new Orderitems();
         item.setOrderId(orderId);
         item.setProductId(productId);
-        item.setOrderProductQuantity(quantity);
+        item.setOrderQuantity(quantity);
         item.setUnitPrice(price);
 
         OrderitemsDao itemDao = new OrderitemsDaoimpl();
