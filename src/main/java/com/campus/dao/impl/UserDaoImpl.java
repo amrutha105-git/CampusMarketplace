@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.campus.dao.UserDao;
+import com.campus.dao.ProfileDao;
+import com.campus.dto.Profile;
 import com.campus.dto.User;
 import com.campus.utility.Connector;
 
@@ -29,11 +31,24 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(2, u.getMail());
 			ps.setString(3, u.getPassword());
 			ps.setString(4, u.getRole());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		    ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+            	int userId = rs.getInt(1);
+            	Profile profile = new Profile();
+            	profile.setUserId(userId);
+	            profile.setFirstName("");
+	            profile.setLastName("");
+	            profile.setPhNo(0);
+	            profile.setGender("OTHER");
+	            profile.setProfileImage("images/default.png");
+
+	            ProfileDao pdao = new ProfileDaoImpl();
+	            pdao.addProfile(profile);
+            }
+	   	} catch (SQLException e) {
+	   		e.printStackTrace();
+	   	}
 	}
 
 	@Override
