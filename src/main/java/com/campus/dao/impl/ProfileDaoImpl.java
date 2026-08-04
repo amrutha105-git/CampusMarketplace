@@ -2,6 +2,7 @@ package com.campus.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.campus.dao.ProfileDao;
@@ -17,19 +18,19 @@ public class ProfileDaoImpl implements ProfileDao {
 	}
 
 	@Override
-	public void addProfile(Profile p) {
+	public void addProfile(Profile pr) {
 		
-		String query = "Insert into profile values (0,?,?,?,?,?,?)";
+		String query = "INSERT INTO profile (profile_id,user_id,firstname,lastname,phno,gender,profile_image) VALUES (0,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, p.getProfileId());
-			ps.setInt(2, p.getUserId());
-			ps.setString(3, p.getFirstName());
-			ps.setString(4, p.getLastName());
-			ps.setLong(5, p.getPhNo());
-			ps.setString(6, p.getGender());
-			ps.setString(7, p.getProfileImage());
-			ps.executeUpdate();
+			ps.setInt(1, pr.getUserId());
+			ps.setString(2, pr.getFirstName());
+			ps.setString(3, pr.getLastName());
+			ps.setLong(4, pr.getPhNo());
+			ps.setString(5, pr.getGender());
+			ps.setString(6, pr.getProfileImage());
+			int rows = ps.executeUpdate();
+			System.out.println("Profile Inserted = " + rows);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,19 +40,19 @@ public class ProfileDaoImpl implements ProfileDao {
 	}
 
 	@Override
-	public void updateProfile(Profile p) {
+	public void updateProfile(Profile pr) {
 		
-		String query = "update profile set profile_id=?, user_id=?, firstname=?, lastname=?, phno=?, gender=?, profile_image=?";
+		String query = "update profile set firstname=?, lastname=?, phno=?, gender=?, profile_image=? where user_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, p.getProfileId());
-			ps.setInt(2, p.getUserId());
-			ps.setString(3, p.getFirstName());
-			ps.setString(4, p.getLastName());
-			ps.setLong(5, p.getPhNo());
-			ps.setString(6, p.getGender());
-			ps.setString(7, p.getProfileImage());
-			ps.executeUpdate();
+			ps.setString(1, pr.getFirstName());
+			ps.setString(2, pr.getLastName());
+			ps.setLong(3, pr.getPhNo());
+			ps.setString(4, pr.getGender());
+			ps.setString(5, pr.getProfileImage());
+			ps.setInt(6, pr.getUserId());
+			int rows = ps.executeUpdate();
+			System.out.println("Rows Updated = " + rows);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +63,7 @@ public class ProfileDaoImpl implements ProfileDao {
 	@Override
 	public void deleteProfile(int profileId) {
 		
-		String query = "delete from profile where category_id=?";
+		String query = "delete from profile where profile_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, profileId);
@@ -74,5 +75,30 @@ public class ProfileDaoImpl implements ProfileDao {
 		}
 
 	}
+	
+	@Override
+	public Profile getProfileByUserId(int userId) {
+		
+	    String query = "SELECT * FROM profile WHERE user_id=?";
+	    try {
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ps.setInt(1, userId);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            Profile p = new Profile();
+	            p.setProfileId(rs.getInt("profile_id"));
+	            p.setUserId(rs.getInt("user_id"));
+	            p.setFirstName(rs.getString("firstname"));
+	            p.setLastName(rs.getString("lastname"));
+	            p.setPhNo(rs.getLong("phno"));
+	            p.setGender(rs.getString("gender"));
+	            p.setProfileImage(rs.getString("profile_image"));
+	            return p;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 
+	    return null;
+	}
 }

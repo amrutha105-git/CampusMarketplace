@@ -4,10 +4,12 @@ import com.campus.dto.Profile;
 
 public interface ProfileDao {
 	
-	void addProfile(Profile p);
+	void addProfile(Profile pr);
 
-    void updateProfile(Profile p);
+    void updateProfile(Profile pr);
 
     void deleteProfile(int profileId);
+    
+    Profile getProfileByUserId(int userId);
     
 }
