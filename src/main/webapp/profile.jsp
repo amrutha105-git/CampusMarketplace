@@ -261,27 +261,9 @@ text-align:center;
 <button class="edit-btn" onclick="location.href='editprofile'">Edit</button>
 
 <div class="profile-image">
-
-<%
-if(profile!=null && profile.getProfileImage()!=null && !profile.getProfileImage().isEmpty()){
-%>
-
-<img src="<%=profile.getProfileImage()%>">
-
-<%
-}else{
-%>
-
-<div class="default-image">
-
-<%=user.getName().substring(0,1).toUpperCase()%>
-
-</div>
-
-<%
-}
-%>
-
+    <div class="default-image">
+        <%= user.getName().substring(0,1).toUpperCase() %>
+    </div>
 </div>
 
 <div class="fullname">

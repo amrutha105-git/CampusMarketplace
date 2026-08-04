@@ -7,8 +7,8 @@ public class Review {
 	private Integer rating;
 	private String comment;
 	private String created_at;
-	
-	
+
+
 	public Integer getReview_id() {
 		return review_id;
 	}
@@ -50,7 +50,7 @@ public class Review {
 		return "Review [review_id=" + review_id + ", user_id=" + user_id + ", product_id=" + product_id + ", rating="
 				+ rating + ", comment=" + comment + ", created_at=" + created_at + "]";
 	}
-	
-	
+
+
 
 }

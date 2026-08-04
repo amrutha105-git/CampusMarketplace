@@ -13,7 +13,7 @@ import com.campus.utility.Connector;
 
 public class ProductsDaoimpl implements ProductsDao{
 	private Connection con;
-	
+
 	public ProductsDaoimpl() {
 		this.con=Connector.requestConnection();
 	}
@@ -30,21 +30,21 @@ public class ProductsDaoimpl implements ProductsDao{
 			ps.setDouble(4, p.getPrice());
 			ps.setString(5, p.getImage());
 			ps.setInt(6, p.getSellerId());
-			
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to add data");
 		}
-		
-		
+
+
 	}
 
 	@Override
 	public void updateProduct(Products p) {
 
-		
+
 		String query="update product set category_id=?, name=?, description=?, price=?, image=? where product_id=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
@@ -56,28 +56,28 @@ public class ProductsDaoimpl implements ProductsDao{
 			ps.setInt(6, p.getProductId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to update the data");
 		}
-		
-		
+
+
 	}
 
 	@Override
 	public void deleteProduct(int productId) {
-		
+
 		String query="delete from product where product_id=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1, productId);
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to delete the data");
 		}
-		
+
 	}
 
 	@Override
@@ -97,15 +97,15 @@ public class ProductsDaoimpl implements ProductsDao{
 				p.setDescription(rs.getString("description"));
 				p.setPrice(rs.getDouble("price"));
 				p.setImage(rs.getString("image"));
-		
-				
+
+
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to get the data");
 		}
-		
+
 		return p;
 	}
 
@@ -113,7 +113,7 @@ public class ProductsDaoimpl implements ProductsDao{
 	public List<Products> getAllProducts() {
 
 		String query="select * from product";
-		List<Products>list=new ArrayList<Products>();
+		List<Products>list=new ArrayList<>();
 		Products p=null;
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
@@ -126,23 +126,23 @@ public class ProductsDaoimpl implements ProductsDao{
 				p.setDescription(rs.getString("description"));
 				p.setPrice(rs.getDouble("price"));
 				p.setImage(rs.getString("image"));
-		
+
 				list.add(p);
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to get the data");
 		}
-		
-		
-		
+
+
+
 		return list;
 	}
 
 	/*@Override
 	public List<Products> getProductsByCategory(int categoryId){
-		
+
 		String query = "Select * from Products where category_id=?";
 		List<Products> clist = new ArrayList<Products>();
 		Products p = null;
@@ -165,8 +165,8 @@ public class ProductsDaoimpl implements ProductsDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return clist;
-		
+
 	}*/
 }

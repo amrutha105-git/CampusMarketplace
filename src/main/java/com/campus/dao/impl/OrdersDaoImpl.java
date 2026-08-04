@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.campus.dao.OrdersDao;
 import com.campus.dto.BuyerOrders;
 import com.campus.dto.Orders;
@@ -18,7 +19,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public OrdersDaoImpl() {
 		this.con=Connector.requestConnection();
     }
-	
+
 	@Override
 	public int addOrders(Orders o){
 	    int orderId = 0;
@@ -31,7 +32,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	        ps.setDouble(3, o.getGst());
 	        ps.setString(4, o.getOrder_status());
 	        ps.executeUpdate();
-	        
+
 	        String query2 = "SELECT MAX(order_id) FROM orders WHERE user_id=?";
 	        PreparedStatement ps2 = con.prepareStatement(query2);
 
@@ -42,7 +43,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	        if(rs.next()) {
 	            orderId = rs.getInt(1);
 	        }
-	    } 
+	    }
 	    catch(SQLException e) {
 
 	        e.printStackTrace();
@@ -90,11 +91,11 @@ public void deleteOrders(int orderId) {
             System.out.println("Order Not Found");
         }
 
-        } 
+        }
         catch (SQLException e) {
         e.printStackTrace();
         }
-    
+
      }
 
      @Override

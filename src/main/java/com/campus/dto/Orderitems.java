@@ -1,13 +1,13 @@
 package com.campus.dto;
 
 public class Orderitems {
-	
+
 	private int orderItemId;
     private int orderId;
     private int productId;
     private int orderQuantity;
     private double unitPrice;
-    
+
 	public int getOrderItemId() {
 		return orderItemId;
 	}
@@ -43,8 +43,8 @@ public class Orderitems {
 		return "Orderitems [orderItemId=" + orderItemId + ", orderId=" + orderId + ", productId=" + productId
 				+ ", orderQuantity=" + orderQuantity + ", unitPrice=" + unitPrice + "]";
 	}
-    
-	
-    
+
+
+
 
 }

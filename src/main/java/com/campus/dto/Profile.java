@@ -1,19 +1,19 @@
 package com.campus.dto;
 
 public class Profile {
-	
+
 	private Integer profileId;
-	
+
 	private Integer userId;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private long phNo;
-	
+
 	private String gender;
-	
+
 	private String profileImage;
 
 	public Integer getProfileId() {

@@ -7,7 +7,7 @@ import com.campus.dto.Orders;
 import com.campus.dto.SellersOrders;
 
 public interface OrdersDao {
-	
+
 	int addOrders(Orders o);
 
     void updateOrders(Orders o);
@@ -18,15 +18,15 @@ public interface OrdersDao {
 
 
     List<Orders> getAllOrders();
-    
+
     List<SellersOrders> getSellerOrders(int sellerId);
-    
+
     void updateOrderStatus(int orderId, String status);
-    
+
     boolean canReview(int userId, int productId);
-    
+
     boolean alreadyReviewed(int userId, int productId);
-    
+
     List<BuyerOrders> getBuyerOrders(int userId);
 }
 

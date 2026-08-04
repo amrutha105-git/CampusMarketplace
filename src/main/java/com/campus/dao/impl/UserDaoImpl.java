@@ -7,16 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.campus.dao.UserDao;
 import com.campus.dao.ProfileDao;
+import com.campus.dao.UserDao;
 import com.campus.dto.Profile;
 import com.campus.dto.User;
 import com.campus.utility.Connector;
 
 public class UserDaoImpl implements UserDao {
-	
+
 	private Connection con;
-	
+
 	public UserDaoImpl() {
 		this.con=Connector.requestConnection();
 	}
@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void addUser(User u) {
 		String query = "Insert into Users values (0,?,?,?,?,sysdate())";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, u.getName());
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void updateUser(User u) {
 		String query = "update users set full_name=?,email=?,password=?,role=? where user_id=?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, u.getName());
@@ -72,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void deleteUser(Integer user_id) {
 		String query = "delete from users where user_id=?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, user_id);
@@ -110,7 +110,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getByAllUser() {
 		String query = "Select * from Users";
-		List<User> ulist = new ArrayList<User>();
+		List<User> ulist = new ArrayList<>();
 		User u = null;
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return ulist;
 	}
 

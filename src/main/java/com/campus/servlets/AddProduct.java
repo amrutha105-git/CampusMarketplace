@@ -35,7 +35,7 @@ public class AddProduct extends HttpServlet {
         p.setPrice(Double.parseDouble(req.getParameter("price")));
         User u = (User) session.getAttribute("signin");
         p.setSellerId(u.getUser_id());
-      
+
 
         // Upload image
         Part part = req.getPart("image");
@@ -55,7 +55,7 @@ public class AddProduct extends HttpServlet {
         // Save filename in database
         p.setImage(fileName);
 
-        
+
         pdao.addProduct(p);
 
         req.setAttribute("success", "Product Added Successfully");

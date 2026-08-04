@@ -15,12 +15,12 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class Login extends HttpServlet{
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		UserDao udao=new UserDaoImpl();
 		User u=udao.getByMailAndPassword(req.getParameter("email"),req.getParameter("password"));
-		
+
 		if(u!=null) {
 			HttpSession session=req.getSession();
 			session.setAttribute("signin", u);
@@ -30,7 +30,7 @@ public class Login extends HttpServlet{
 			req.setAttribute("error", "Invalid credentials");
 			req.getRequestDispatcher("userLogin.jsp").forward(req, resp);
 		}
-		
-		
+
+
 	}
 }
