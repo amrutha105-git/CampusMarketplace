@@ -2,8 +2,8 @@ package com.campus.dto;
 
 public class Orders {
 	 private int order_id ;
-	private double total_amount; 
-	private String order_status;  
+	private double total_amount;
+	private String order_status;
 	private String ordered_at;
 	private double gst;
 	private int user_id;
@@ -16,7 +16,7 @@ public class Orders {
 	}
 	public int getOrder_id() {
 		return order_id;
-		
+
 	}
 	public double getGst() {
 		return gst;
@@ -51,5 +51,5 @@ public class Orders {
 				+ ", ordered_at=" + ordered_at + ", gst=" + gst + "]";
 	}
 
-	} 
+	}
 

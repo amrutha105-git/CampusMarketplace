@@ -1,7 +1,7 @@
 package com.campus.dto;
 
 public class SellersOrders {
-	
+
 	private Integer orderId;
     private Integer productId;
     private String productName;
@@ -64,8 +64,8 @@ public class SellersOrders {
 				+ ", quantity=" + quantity + ", unitPrice=" + unitPrice + ", buyerName=" + buyerName + ", orderStatus="
 				+ orderStatus + ", orderedAt=" + orderedAt + "]";
 	}
-    
-    
+
+
 
 
 }

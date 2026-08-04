@@ -13,7 +13,7 @@ import com.campus.utility.Connector;
 
 public class ReviewDaoImpl implements ReviewDao {
 	private Connection con;
-	
+
 	public ReviewDaoImpl() {
 		this.con=Connector.requestConnection();
 	}
@@ -91,14 +91,14 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public List<Review> getByAllReview() {
 		String query="select * from reviews";
-		List<Review> rlist=new ArrayList<Review>();
+		List<Review> rlist=new ArrayList<>();
 		Review r=null;
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				r=new Review();
-				
+
 				r.setReview_id(rs.getInt("review_id"));
 				r.setUser_id(rs.getInt("user_id"));
 				r.setProduct_id(rs.getInt("product_id"));
@@ -112,7 +112,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return rlist;
 	}
-	
+
 	@Override
 	public List<Review> getReviewsByProductId(Integer productId) {
 	    String query="select * from reviews where product_id=?";

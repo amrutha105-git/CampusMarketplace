@@ -13,5 +13,5 @@ public interface UserDao {
 	List<User> getByAllUser();
 	User getByMailAndPassword(String mail,String password);
 	User findByMail(String mail);
-	
+
 }

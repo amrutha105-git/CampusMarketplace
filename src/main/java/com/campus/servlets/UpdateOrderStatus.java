@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/UpdateOrderStatus")
 public class UpdateOrderStatus extends HttpServlet {
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 int orderId = Integer.parseInt(req.getParameter("orderId"));

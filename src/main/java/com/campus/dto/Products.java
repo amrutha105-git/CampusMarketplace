@@ -52,13 +52,13 @@ public class Products {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Products [productId=" + productId + ", categoryId=" + categoryId + ", name=" + name + ", description="
 				+ description + ", price=" + price + ", image=" + image +  "]";
 	}
-	
-	
+
+
 
 }

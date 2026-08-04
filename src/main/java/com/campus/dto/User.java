@@ -1,14 +1,14 @@
 package com.campus.dto;
 
 public class User {
-	
+
 	private Integer user_id;
 	private String name;
 	private String mail;
 	private String password;
 	private String role;
 	private String createdAt;
-	
+
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -45,10 +45,10 @@ public class User {
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", name=" + name + ", mail=" + mail + ", role=" + role + ", createdAt=" + createdAt + "]";
 	}
-	
+
 }

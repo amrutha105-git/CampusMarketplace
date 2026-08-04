@@ -12,10 +12,10 @@ import com.campus.dto.Category;
 import com.campus.utility.Connector;
 
 public class CategoryDaoImpl implements CategoryDao {
-	
+
 
 private Connection con;
-	
+
 	public CategoryDaoImpl() {
 		this.con=Connector.requestConnection();
 	}
@@ -81,7 +81,7 @@ private Connection con;
 	@Override
 	public List<Category> getByAllCategory() {
 		String query="select * from category";
-		List<Category> clist=new ArrayList<Category>();
+		List<Category> clist=new ArrayList<>();
 		Category c=null;
 		try {
 			PreparedStatement ps=con.prepareStatement(query);

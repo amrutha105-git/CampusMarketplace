@@ -19,7 +19,7 @@ public class Logout extends HttpServlet{
 		if(u!= null) {
 			session.invalidate();
 			resp.sendRedirect("userLogin.jsp");
-			
+
 		}
 		else {
 			req.setAttribute("loginError", "Session expired!");

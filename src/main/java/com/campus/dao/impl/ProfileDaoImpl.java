@@ -10,16 +10,16 @@ import com.campus.dto.Profile;
 import com.campus.utility.Connector;
 
 public class ProfileDaoImpl implements ProfileDao {
-	
+
 	private Connection con;
-	
+
 	public ProfileDaoImpl() {
 		this.con = Connector.requestConnection();
 	}
 
 	@Override
 	public void addProfile(Profile pr) {
-		
+
 		String query = "INSERT INTO profile (profile_id,user_id,firstname,lastname,phno,gender,profile_image) VALUES (0,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -41,18 +41,16 @@ public class ProfileDaoImpl implements ProfileDao {
 
 	@Override
 	public void updateProfile(Profile pr) {
-		
-		String query = "update profile set firstname=?, lastname=?, phno=?, gender=?, profile_image=? where user_id=?";
+
+		String query = "update profile set firstname=?, lastname=?, phno=?, gender=? where user_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pr.getFirstName());
 			ps.setString(2, pr.getLastName());
 			ps.setLong(3, pr.getPhNo());
 			ps.setString(4, pr.getGender());
-			ps.setString(5, pr.getProfileImage());
-			ps.setInt(6, pr.getUserId());
-			int rows = ps.executeUpdate();
-			System.out.println("Rows Updated = " + rows);
+			ps.setInt(5, pr.getUserId());
+		    ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +60,7 @@ public class ProfileDaoImpl implements ProfileDao {
 
 	@Override
 	public void deleteProfile(int profileId) {
-		
+
 		String query = "delete from profile where profile_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -75,10 +73,10 @@ public class ProfileDaoImpl implements ProfileDao {
 		}
 
 	}
-	
+
 	@Override
 	public Profile getProfileByUserId(int userId) {
-		
+
 	    String query = "SELECT * FROM profile WHERE user_id=?";
 	    try {
 	        PreparedStatement ps = con.prepareStatement(query);

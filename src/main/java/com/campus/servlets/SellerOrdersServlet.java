@@ -36,8 +36,8 @@ public class SellerOrdersServlet extends HttpServlet {
 
         req.getRequestDispatcher("sellerOrders.jsp").forward(req, resp);
 	}
-	
-	
-	
+
+
+
 
 }

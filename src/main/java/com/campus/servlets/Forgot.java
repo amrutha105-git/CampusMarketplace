@@ -18,7 +18,7 @@ public class Forgot extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		UserDao udao= new UserDaoImpl();
 		User u=udao.findByMail(req.getParameter("mail"));
-		
+
 		if(u!=null) {
 			if(req.getParameter("password").equals(req.getParameter("confirm"))) {
 				u.setPassword(req.getParameter("password"));

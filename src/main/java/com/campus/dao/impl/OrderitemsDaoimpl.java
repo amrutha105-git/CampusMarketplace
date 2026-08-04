@@ -13,7 +13,7 @@ import com.campus.utility.Connector;
 
 public class OrderitemsDaoimpl implements OrderitemsDao {
 	private Connection con;
-	
+
 	public OrderitemsDaoimpl() {
 		this.con=Connector.requestConnection();
 	}
@@ -21,7 +21,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 	@Override
 	public void addOrderItem(Orderitems o) {
 
-		String query="insert into order_item(order_id,product_id,order_quantity,unit_price) VALUES(?,?,?,?)";;
+		String query="insert into order_item(order_id,product_id,order_quantity,unit_price) VALUES(?,?,?,?)";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,o.getOrderId() );
@@ -30,11 +30,11 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 			ps.setDouble(4, o.getUnitPrice());
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			System.out.println("failed to add data to order items");
 		}
-		
+
 
 	}
 
@@ -51,7 +51,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 	            ps.setInt(5, o.getOrderItemId());
 	            ps.executeUpdate();
 	          } catch (SQLException e) {
-	        	  
+
 	            e.printStackTrace();
 	            System.out.println("failed to update orderitems");
 	        }
@@ -60,7 +60,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
 
 	@Override
 	public void deleteOrderItem(int orderItemId) {
-		
+
 		 String query = "delete from order_item where order_item_id=?";
 	        try {
 	        	PreparedStatement ps = con.prepareStatement(query);
@@ -92,7 +92,7 @@ public class OrderitemsDaoimpl implements OrderitemsDao {
             } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("failed to get data");
-            
+
         }
         return o;
 	}
