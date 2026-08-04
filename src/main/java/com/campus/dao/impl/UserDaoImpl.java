@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getbyUserId(Integer user_id) {
+	public User getByUserId(Integer user_id) {
 		String query = "select * from users where user_id=?";
 		User u = null;
 		try {
