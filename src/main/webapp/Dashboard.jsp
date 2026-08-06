@@ -100,7 +100,13 @@ transform:translateY(-3px);
 <body>
 <!-- ================= Background Video ================= -->
 
-<img style="background-image: url("C:\Users\ammua\Downloads\WhatsApp Image 2026-08-07 at 12.53.29 AM.jpeg")>
+<video autoplay muted loop playsinline class="video-bg">
+
+    <source src="C:\Users\ammua\Downloads\WhatsApp Image 2026-08-07 at 12.53.29 AM.jpeg" >
+
+    Your browser does not support the video tag.
+
+</video>
 
 <!-- Dark Overlay -->
 
